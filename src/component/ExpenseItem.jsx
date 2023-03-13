@@ -1,17 +1,21 @@
-import './ExpenseItem.css'
+import ExpenseDate from './ExpenseDate';
+import './ExpenseItem.css';
 
-function ExpenseItem() {
+function ExpenseItem(props) {
+	const { title, amount } = props;
+	const clickHandler = function() {
+		console.log("Clicked !!!!") ;
+ 	}
 	return (
 		<div className='expense-item'>
-			<div >March 10 2023</div>
+			<ExpenseDate date={props.date} />
 			<div className='expense-item__description'>
-				<h2>Car Insurance</h2>
-				<div className="expense-item__price">
-					$23423 
-				</div>
+				<h2>{title}</h2>
+				<div className='expense-item__price'>${amount}</div>
 			</div>
+			<button onClick={clickHandler} > Click Me </button>
 		</div>
-	);
+	); 
 }
 
 export default ExpenseItem;
