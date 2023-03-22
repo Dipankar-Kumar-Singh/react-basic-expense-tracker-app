@@ -1,9 +1,12 @@
-import ExpenseItem from './component/ExpenseItem';
-import './component/Expense.css';
+// import ExpenseItem from './component/ExpenseItem';
+import './component/Expenses.css';
 import NewExpense from './component/NewExpense/NewExpense';
+import ExpensesFilter from './component/ExpenseFilter/ExpensesFilter';
+import Expenses from './component/Expenses';
+import { useState } from 'react';
 
 function App() {
-	const expenses = [
+	const expenses_data = [
 		{
 			id: 'e1',
 			title: 'Toilet Paper',
@@ -30,16 +33,25 @@ function App() {
 		},
 	];
 
+	const [expenseList, setExpenseList] = useState(expenses_data);
+
+	const addExpenseHandler = function (expense) {
+		setExpenseList((previousState) =>{ 
+			return [expense ,  ...previousState ] ;
+		});
+	};
+
+	const [year, setYear] = useState('2020');
+
+	const expenseFilterChangeHandler = (targetYear) => {
+		setYear(targetYear);
+	};
+
 	return (
 		<div className='expenses'>
-			<NewExpense />
-
-			{/* <h2>Let's get started!</h2> */}
-			<ExpenseItem
-				title={'Something'}
-				date={'20 March 2023'}
-				amount={324}
-			></ExpenseItem>
+			<NewExpense onAddExpense={addExpenseHandler} />
+			<ExpensesFilter onExpenseFilerChnage={expenseFilterChangeHandler} />
+			<Expenses expenses={expenseList} selectedYear={year} />
 		</div>
 	);
 }
