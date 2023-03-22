@@ -2,16 +2,16 @@ import ExpenseItem from './ExpenseItem';
 import './Expenses.css';
 
 export default function Expenses(props) {
-	let { expenses } = props;
+	const { expenses } = props;
 	const { selectedYear } = props;
 
-	expenses = expenses.filter(
+	const filteredExpenses = expenses.filter(
 		(exp) => exp.date.getFullYear() === Number(selectedYear)
 	);
 
-	const expensesComponentCollection = expenses.map((e) => (
-		<ExpenseItem key={Math.random()} items={expenses} {...e} />
+	const expensesComponentCollection = filteredExpenses.map((e) => (
+		<ExpenseItem key={Math.random()}  {...e} />
 	));
-
+	
 	return expensesComponentCollection;
 }
