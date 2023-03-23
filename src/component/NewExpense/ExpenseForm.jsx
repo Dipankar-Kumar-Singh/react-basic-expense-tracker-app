@@ -9,7 +9,6 @@ const ExpenseForm = ({onSaveExpenseData , chnageVisibibility }) => {
 
 
 	const titleChangeHandler = (event) => {
-		// console.dir(event.target.value) ;
 		setEnteredTitle( () =>   event.target.value) ;
 	};
 
@@ -36,6 +35,7 @@ const ExpenseForm = ({onSaveExpenseData , chnageVisibibility }) => {
 		setEnteredAmount(() => '');
 		setEnteredDate(() => '');
 
+		chnageVisibibility() ;
 	}
 
 	return (
@@ -59,7 +59,7 @@ const ExpenseForm = ({onSaveExpenseData , chnageVisibibility }) => {
 
 			<div className='new-expense__action'>
 				<button type='button' onClick = { chnageVisibibility }>Cancel</button>
-				<button type='submit'  onSubmit={chnageVisibibility}>Add Expense</button>
+				<button type='submit' >Add Expense</button>
 			</div>
 		</form>
 	);

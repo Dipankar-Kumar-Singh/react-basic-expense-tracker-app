@@ -51,10 +51,8 @@ function App() {
 
 	const [active, setActive] = useState(false);
 
-	const chnageVisibibility = function () {
-		console.log('Before ', currentlyVisible());
+	const chnageVisibibility =  () => {
 		setActive((prev) => !prev);
-		console.log('After ', currentlyVisible());
 	};
 
 	const currentlyVisible = () => {
