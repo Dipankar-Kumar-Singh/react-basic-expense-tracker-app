@@ -39,7 +39,7 @@ const ExpenseForm = ({onSaveExpenseData , chnageVisibibility }) => {
 	}
 
 	return (
-		<form onSubmit={submitHandler}>
+		<form onSubmit={submitHandler} >
 			<div className='new-expense__control'>
 				<div className='new-expense__control'>
 					<label> Title </label>
@@ -58,8 +58,8 @@ const ExpenseForm = ({onSaveExpenseData , chnageVisibibility }) => {
 			</div>
 
 			<div className='new-expense__action'>
-				<button type='button'>Cancel</button>
-				<button type='submit' onSubmit ={ chnageVisibibility }>Add Expense</button>
+				<button type='button' onClick = { chnageVisibibility }>Cancel</button>
+				<button type='submit'  onSubmit={chnageVisibibility}>Add Expense</button>
 			</div>
 		</form>
 	);

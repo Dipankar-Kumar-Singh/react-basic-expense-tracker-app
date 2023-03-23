@@ -15,8 +15,6 @@ const newExpense = (props) => {
 
 	const {chnageVisibibility} = props ;
 
-
-
 	return (
 		<div className='new-expense'>
 			<ExpenseForm chnageVisibibility={chnageVisibibility}  onSaveExpenseData={saveExpenseDataHanlder} />

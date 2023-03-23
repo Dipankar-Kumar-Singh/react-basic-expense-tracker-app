@@ -4,7 +4,7 @@ import NewExpense from './component/NewExpense/NewExpense';
 import ExpensesFilter from './component/ExpenseFilter/ExpensesFilter';
 import Expenses from './component/Expenses';
 import { useState } from 'react';
-import './component/NewExpense/style/ExpenseForm.css';
+import './component/NewExpense/style/NewExpense.css'
 
 
 function App() {
@@ -38,8 +38,8 @@ function App() {
 	const [expenseList, setExpenseList] = useState(expenses_data);
 
 	const addExpenseHandler = function (expense) {
-		setExpenseList((previousState) =>{ 
-			return [expense ,  ...previousState ] ;
+		setExpenseList((previousState) => {
+			return [expense, ...previousState];
 		});
 	};
 
@@ -49,35 +49,35 @@ function App() {
 		setYear(targetYear);
 	};
 
-	const [ active , setActive ] = useState(false) ;
+	const [active, setActive] = useState(false);
 
-	const chnageVisibibility = function(){
-		setActive(prev => !prev) ;
-	}
+	const chnageVisibibility = function () {
+		console.log('Before ', currentlyVisible());
+		setActive((prev) => !prev);
+		console.log('After ', currentlyVisible());
+	};
 
-	const HolderContent =()=>{
-		if(active === false) {
-			return (
-				<div className='new-expense__controls'>
-					<div className='new-expense__action'>
-						<button type='button' onClick={()=> setActive((prev)=>!prev)}> Add Item</button>
-					</div>
-				</div>
-			)
-		}
-		return <NewExpense chnageVisibibility={chnageVisibibility}  onAddExpense={addExpenseHandler} /> ;
-	}
-	
+	const currentlyVisible = () => {
+		return active;
+	};
 
 	return (
 		<div className='expenses'>
-			{/* <NewExpense onAddExpense={addExpenseHandler} /> */}
-			<div className='holder'>
-					<HolderContent></HolderContent>
-					{console.log(active)}
-			</div>
+			{active ? (
+				<NewExpense
+					chnageVisibibility={chnageVisibibility}
+					onAddExpense={addExpenseHandler}
+				/>
+			) : (
+				<div className='new-expense'>
+				<button  type='button' onClick={chnageVisibibility}>
+					Add Item
+				</button>
+				</div>
+			)}
 			<ExpensesFilter onExpenseFilerChnage={expenseFilterChangeHandler} />
 			<Expenses expenses={expenseList} selectedYear={year} />
+			{console.log(active)}
 		</div>
 	);
 }
