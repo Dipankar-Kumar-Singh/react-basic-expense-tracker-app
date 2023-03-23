@@ -13,9 +13,13 @@ const newExpense = (props) => {
 		props.onAddExpense(expenseData) ;
 	}
 
+	const {chnageVisibibility} = props ;
+
+
+
 	return (
 		<div className='new-expense'>
-			<ExpenseForm onSaveExpenseData={saveExpenseDataHanlder} />
+			<ExpenseForm chnageVisibibility={chnageVisibibility}  onSaveExpenseData={saveExpenseDataHanlder} />
 		</div>
 	);
 };

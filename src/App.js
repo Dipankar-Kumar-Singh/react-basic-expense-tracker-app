@@ -4,6 +4,8 @@ import NewExpense from './component/NewExpense/NewExpense';
 import ExpensesFilter from './component/ExpenseFilter/ExpensesFilter';
 import Expenses from './component/Expenses';
 import { useState } from 'react';
+import './component/NewExpense/style/ExpenseForm.css';
+
 
 function App() {
 	const expenses_data = [
@@ -47,9 +49,33 @@ function App() {
 		setYear(targetYear);
 	};
 
+	const [ active , setActive ] = useState(false) ;
+
+	const chnageVisibibility = function(){
+		setActive(prev => !prev) ;
+	}
+
+	const HolderContent =()=>{
+		if(active === false) {
+			return (
+				<div className='new-expense__controls'>
+					<div className='new-expense__action'>
+						<button type='button' onClick={()=> setActive((prev)=>!prev)}> Add Item</button>
+					</div>
+				</div>
+			)
+		}
+		return <NewExpense chnageVisibibility={chnageVisibibility}  onAddExpense={addExpenseHandler} /> ;
+	}
+	
+
 	return (
 		<div className='expenses'>
-			<NewExpense onAddExpense={addExpenseHandler} />
+			{/* <NewExpense onAddExpense={addExpenseHandler} /> */}
+			<div className='holder'>
+					<HolderContent></HolderContent>
+					{console.log(active)}
+			</div>
 			<ExpensesFilter onExpenseFilerChnage={expenseFilterChangeHandler} />
 			<Expenses expenses={expenseList} selectedYear={year} />
 		</div>

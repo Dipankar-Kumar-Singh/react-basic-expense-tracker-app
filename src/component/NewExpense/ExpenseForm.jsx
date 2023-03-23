@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './style/ExpenseForm.css';
 
-const ExpenseForm = ({onSaveExpenseData}) => {
+const ExpenseForm = ({onSaveExpenseData , chnageVisibibility }) => {
 
 	const [ enteredTitle , setEnteredTitle ] = useState('') ;
 	const [ enteredAmount , setEnteredAmount] = useState('') ;
@@ -36,7 +36,6 @@ const ExpenseForm = ({onSaveExpenseData}) => {
 		setEnteredAmount(() => '');
 		setEnteredDate(() => '');
 
-		// console.dir(expenseData) ;
 	}
 
 	return (
@@ -59,7 +58,8 @@ const ExpenseForm = ({onSaveExpenseData}) => {
 			</div>
 
 			<div className='new-expense__action'>
-				<button type='submit'>Add Expense</button>
+				<button type='button'>Cancel</button>
+				<button type='submit' onSubmit ={ chnageVisibibility }>Add Expense</button>
 			</div>
 		</form>
 	);
